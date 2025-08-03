@@ -2,9 +2,9 @@
 // ===== 1. CONFIGURATION: REPLACE WITH YOUR CREDENTIALS =========
 // =================================================================
 // Find these in your Google Cloud Console project
-const CLIENT_ID = 'YOUR_CLIENT_ID.apps.googleusercontent.com'; 
+const CLIENT_ID = '949266732717-f2gotirajs32tiljralg7vtmcv5oajvb.apps.googleusercontent.com'; 
 // Find this in your Google Analytics Admin > Property Settings
-const GA4_PROPERTY_ID = 'YOUR_PROPERTY_ID'; 
+const GA4_PROPERTY_ID = '429032834'; 
 
 // Scopes required for the Google Analytics Data API
 const SCOPES = 'https://www.googleapis.com/auth/analytics.readonly';
