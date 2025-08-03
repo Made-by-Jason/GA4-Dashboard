@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GA4 Campaigns Dashboard</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Heroicons for icons -->
+    <script src="https://unpkg.com/heroicons@2.0.13/24/outline/index.js"></script>
+    <style>
+        /* Custom styles for a more authentic look */
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+        }
+        .dashboard-card, .dashboard-section {
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 1px solid #374151; /* border-gray-700 */
+        }
+        .brand-gold { color: #f59e0b; } /* text-amber-500 */
+        .brand-gold-bg { background-color: #f59e0b; } /* bg-amber-500 */
+        .brand-blue { color: #38bdf8; } /* text-sky-400 */
+        .brand-blue-border { border-color: #38bdf8; }
+    </style>
+</head>
+<body class="text-gray-300">
+
+    <div class="flex min-h-screen">
+        <!-- ===== Left Sidebar ===== -->
+        <aside class="w-24 flex-shrink-0 dashboard-card p-4 flex flex-col items-center justify-between">
+            <div class="flex flex-col items-center space-y-8">
+                <div class="w-16 h-16 bg-gray-700 border border-gray-600 flex items-center justify-center text-center text-xs p-2">Place Your Brand Logo Here</div>
+                <nav class="flex flex-col items-center space-y-6">
+                    <a href="#" class="text-center hover:brand-gold">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 1.5m-5-11.25h2.25m-2.25 0h3.75M3.75 19.5h16.5m-16.5 0a2.25 2.25 0 012.25-2.25h12A2.25 2.25 0 0120.25 19.5m-16.5 0v.75c0 .621.504 1.125 1.125 1.125h14.25c.621 0 1.125-.504 1.125-1.125v-.75" /></svg>
+                        <span class="text-xs mt-1">Overview</span>
+                    </a>
+                    <a href="#" class="text-center brand-gold">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m0 13.5l-4.06-7.155M12 4.5a4.5 4.5 0 11-8.632 1.356M16.5 4.5a4.5 4.5 0 11-8.632 1.356" /></svg>
+                        <span class="text-xs mt-1">Engagements</span>
+                    </a>
+                    <a href="#" class="text-center hover:brand-gold">
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" /></svg>
+                        <span class="text-xs mt-1">Conversions</span>
+                    </a>
+                    <a href="#" class="text-center hover:brand-gold">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c.51 0 .962-.343 1.087-.835l.383-1.437M7.5 14.25L5.106 5.165A2.25 2.25 0 002.818 4H2.25m9.75 11.25A2.25 2.25 0 0110.5 18a2.25 2.25 0 012.25-2.25m-2.25 2.25a2.25 2.25 0 002.25 2.25m2.25-2.25a2.25 2.25 0 012.25 2.25m-12.75-6.75h11.218" /></svg>
+                        <span class="text-xs mt-1">E-Commerce</span>
+                    </a>
+                    <a href="#" class="text-center hover:brand-gold">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg>
+                        <span class="text-xs mt-1">INFO</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="text-center">
+                 <a href="#" class="text-xs brand-gold">✨ Click here for more Templates</a>
+            </div>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="flex-1 p-6">
+            <!-- Top Header -->
+            <header class="flex justify-between items-start mb-4">
+                <div>
+                    <h1 class="text-2xl font-semibold text-white">Google Analytics 4 - <span class="brand-gold-bg text-gray-900 px-2 rounded">Campaigns</span></h1>
+                    <p class="text-gray-400 mt-1">Explore Campaign Performance. See which campaigns are driving results...</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                        <span>Get Dashboard</span>
+                    </button>
+                    <!-- This button will be used for Google Sign-In -->
+                    <button id="authorize_button" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">Connect Google Analytics</button>
+                    <button id="signout_button" style="display: none;" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Sign Out</button>
+                </div>
+            </header>
+
+            <!-- Filters -->
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+                <select class="dashboard-card px-3 py-2 rounded-md focus:outline-none"><option>Session campaign</option></select>
+                <select class="dashboard-card px-3 py-2 rounded-md focus:outline-none"><option>Session Google Ads campaign</option></select>
+                <select class="dashboard-card px-3 py-2 rounded-md focus:outline-none"><option>Channels</option></select>
+                <select class="dashboard-card px-3 py-2 rounded-md focus:outline-none"><option>Country</option></select>
+                <select class="dashboard-card px-3 py-2 rounded-md focus:outline-none"><option>Device</option></select>
+                <input type="text" value="21 Jun 2025 - 20 Jul 2025" class="dashboard-card px-3 py-2 rounded-md focus:outline-none"/>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                <!-- Sessions -->
+                <div class="dashboard-card p-4 rounded-lg">
+                    <h3 class="text-gray-400 text-sm">Sessions</h3>
+                    <p id="kpi-sessions" class="text-3xl font-bold text-white mt-1">14.7K</p>
+                    <p class="text-sm text-red-500 mt-1">▼ -0.2%</p>
+                    <div class="h-12 w-full mt-2"><canvas id="sparkline-sessions"></canvas></div>
+                </div>
+                <!-- Total Users -->
+                <div class="dashboard-card p-4 rounded-lg">
+                    <h3 class="text-gray-400 text-sm">Total users</h3>
+                    <p id="kpi-users" class="text-3xl font-bold text-white mt-1">30.1K</p>
+                    <p class="text-sm text-red-500 mt-1">▼ -43.9%</p>
+                    <div class="h-12 w-full mt-2"><canvas id="sparkline-users"></canvas></div>
+                </div>
+                <!-- Transactions -->
+                <div class="dashboard-card p-4 rounded-lg">
+                    <h3 class="text-gray-400 text-sm">Transactions</h3>
+                    <p id="kpi-transactions" class="text-3xl font-bold text-white mt-1">232.0</p>
+                    <p class="text-sm text-red-500 mt-1">▼ -21.9%</p>
+                    <div class="h-12 w-full mt-2"><canvas id="sparkline-transactions"></canvas></div>
+                </div>
+                <!-- Item Revenue -->
+                <div class="dashboard-card p-4 rounded-lg">
+                    <h3 class="text-gray-400 text-sm">Item revenue</h3>
+                    <p id="kpi-revenue" class="text-3xl font-bold text-white mt-1">$35.18K</p>
+                    <p class="text-sm text-red-500 mt-1">▼ -42.2%</p>
+                    <div class="h-12 w-full mt-2"><canvas id="sparkline-revenue"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Main Chart & Table Section -->
+            <div class="dashboard-section p-6 rounded-lg">
+                <!-- Chart -->
+                <div>
+                    <h2 class="text-lg font-semibold text-white">Top 10 Campaign Trend Overtime</h2>
+                    <div class="h-80 mt-4"><canvas id="main-chart"></canvas></div>
+                </div>
+
+                <!-- Table -->
+                <div class="mt-8">
+                    <h2 class="text-lg font-semibold text-white mb-4">Top Campaign Performance</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead class="brand-gold-bg text-gray-900 font-bold uppercase">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">Session campaign</th>
+                                    <th scope="col" class="px-6 py-3">Sessions</th>
+                                    <th scope="col" class="px-6 py-3">Total users</th>
+                                    <th scope="col" class="px-6 py-3">Bounce rate</th>
+                                    <th scope="col" class="px-6 py-3">Avg session duration</th>
+                                    <th scope="col" class="px-6 py-3">Transactions</th>
+                                    <th scope="col" class="px-6 py-3">Total revenue</th>
+                                </tr>
+                            </thead>
+                            <tbody id="performance-table-body">
+                                <!-- Table rows will be inserted here by JavaScript -->
+                                <tr class="border-b border-gray-700">
+                                    <td class="px-6 py-4 font-medium text-white">(not set)</td>
+                                    <td class="px-6 py-4">4,825</td>
+                                    <td class="px-6 py-4">28,068</td>
+                                    <td class="px-6 py-4">90.98%</td>
+                                    <td class="px-6 py-4">00:04:22</td>
+                                    <td class="px-6 py-4">39</td>
+                                    <td class="px-6 py-4">$3,014.76</td>
+                                </tr>
+                                <tr class="bg-gray-700/50 border-b border-gray-700">
+                                    <td class="px-6 py-4 font-medium text-white">[Evergreen] Merch Store US and CA | Search</td>
+                                    <td class="px-6 py-4">3,272</td>
+                                    <td class="px-6 py-4">2,628</td>
+                                    <td class="px-6 py-4">24.57%</td>
+                                    <td class="px-6 py-4">00:04:13</td>
+                                    <td class="px-6 py-4">43</td>
+                                    <td class="px-6 py-4">$4,627.24</td>
+                                </tr>
+                                <!-- ... more placeholder rows -->
+                            </tbody>
+                            <tfoot class="font-bold text-white">
+                                <tr class="border-t-2 border-gray-600">
+                                    <td class="px-6 py-3">Grand total</td>
+                                    <td class="px-6 py-3">14,714</td>
+                                    <td class="px-6 py-3">30,126</td>
+                                    <td class="px-6 py-3">50.14%</td>
+                                    <td class="px-6 py-3">00:04:20</td>
+                                    <td class="px-6 py-3">232</td>
+                                    <td class="px-6 py-3">$24,200.64</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+             <footer class="mt-6 flex justify-between items-center text-sm">
+                <div>
+                    Made by <a href="#" class="brand-gold">Sheik Shahul</a> - Freelance Data Analyst
+                </div>
+                <button class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-2 px-4 rounded-full inline-flex items-center">
+                    ☕
+                    <span class="ml-2">Buy me a coffee</span>
+                </button>
+                <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+                    Request a Custom Report
+                </button>
+            </footer>
+        </main>
+    </div>
+
+    <!-- ===== JavaScript for Charts and API ===== -->
+    <script src="app.js"></script>
+    
+    <!-- Google API Client Library -->
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+</body>
+</html>
